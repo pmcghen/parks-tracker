@@ -1,0 +1,39 @@
+:root {
+    --font-color: #000F08;
+    --link-color: #1C3738;
+    --alt-link-color: #8BAAAD;
+    --background-color: #F4FFF8;
+
+    --light-grey: #4D4847;
+
+    color: var(--font-color);
+    background: var(--background-color);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --font-color: #F4FFF8;
+        --background-color: #000F08;
+        --link-color: var(--alt-link-color);
+    }
+}
+
+a {
+    color: var(--link-color);
+}
+
+.container {
+    width: 80%;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-responsive {
+    width: 100%;
+    height: auto;
+}
+
+footer {
+    text-align: center;
+}
