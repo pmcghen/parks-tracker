@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-  <title>Home | McGhen Manor Dashboard</title>
+  <title>Home | National Parks Tracker</title>
 </svelte:head>
 
 <div class="container">
