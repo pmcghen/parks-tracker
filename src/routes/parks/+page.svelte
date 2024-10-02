@@ -3,7 +3,6 @@
   export let data;
 
   const { parks } = data;
-  console.log(parks);
 </script>
 
 <svelte:head>
