@@ -19,8 +19,11 @@ model User {
   accounts      Account[]
   sessions      Session[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  UserProfile UserProfile?
+  Park        Park?        @relation(fields: [parkId], references: [id])
+  parkId      String?
 }
 
 model Account {
@@ -62,4 +65,24 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model UserProfile {
+  id            String  @id @default(uuid())
+  userId        String  @unique
+  firstName     String?
+  lastName      String?
+  nickname      String?
+  location      String?
+  favoriteParks Park[]
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Park {
+  id            String       @id @default(uuid())
+  npsId         String
+  visitors      User[]
+  UserProfile   UserProfile? @relation(fields: [userProfileId], references: [id])
+  userProfileId String?
 }
