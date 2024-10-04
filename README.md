@@ -1,18 +1,10 @@
-# create-svelte
+# :camping: National Parks Tracker
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Explore (US) National Parks.
 
-## Creating a project
+## Getting started
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+You'll need API keys from [:national_park: National Park Service](https://www.nps.gov/subjects/developer/get-started.htm) and [:partly_sunny: WeatherAPI](http://weatherapi.com/). You'll also want to [create an OAuth app in GitHub](https://authjs.dev/guides/configuring-github).
 
 ## Developing
 
