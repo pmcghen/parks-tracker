@@ -1,8 +1,24 @@
 <script lang="ts">
+  import { browser } from "$app/environment";
   import Card from "$lib/Card.svelte";
   export let data;
 
-  const { parks } = data;
+  interface PageLink {
+    url: string;
+    number: Number;
+  }
+
+  const { parks, pages } = data;
+  const pageLinks: PageLink[] = [];
+
+  if (browser) {
+    const pageUrl = new URL(window.location.href);
+    const path = pageUrl.pathname;
+
+    for (let i = 1; i <= pages; i++) {
+      pageLinks.push({ url: `${path}?p=${i}`, number: i });
+    }
+  }
 </script>
 
 <svelte:head>
@@ -19,6 +35,12 @@
         isFree={!park.entranceFees.length}
         parkCode={park.parkCode}
       />
+    {/each}
+  {/if}
+
+  {#if pageLinks.length}
+    {#each pageLinks as link}
+      <a data-sveltekit-reload href={link.url}>{link.number}</a>
     {/each}
   {/if}
 </div>

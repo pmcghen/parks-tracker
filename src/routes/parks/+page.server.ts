@@ -21,13 +21,11 @@ export const load: PageServerLoad = async ({ url }) => {
 
   const totalParks = parksData.total;
 
-  let pages = 0;
+  let pages = 1;
 
   if (totalParks > parksPerPage) {
     pages = Math.ceil(totalParks / parksPerPage);
   }
-
-  console.log(pages);
 
   if (parksResponse.status === 200) {
     return {
