@@ -3,10 +3,7 @@
 
   const { park, weather } = data;
 
-  const parkImage = park.images[0];
-
-  console.log(park);
-  
+  const parkImage = park.images[0];  
 </script>
 
 <svelte:head>
@@ -159,7 +156,7 @@
   }
 
   ul {
-    margin: 0;
+    margin-top: 0;
     padding: 0;
     list-style: none;
   }
