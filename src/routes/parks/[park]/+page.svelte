@@ -30,13 +30,13 @@
   <h2>Know before you go!</h2>
   <div class="grid">
     <div>
-      <h3>Hours</h3>
+      <h3><i class="bx bx-time"></i> Hours</h3>
     </div>
     <div>
-      <h3>Contact</h3>
+      <h3><i class="bx bx-phone"></i> Contact</h3>
     </div>
     <div>
-      <h3>Fees</h3>
+      <h3><i class="bx bx-money-withdraw"></i> Fees</h3>
       {#if park.fees.length}
         Money
       {:else}
@@ -44,7 +44,7 @@
       {/if}
     </div>
     <div>
-      <h3>Weather</h3>
+      <h3><i class="bx bx-leaf"></i> Weather</h3>
       <p>{park.weatherInfo}</p>
       <p>
         <strong>Current Temperature</strong>
@@ -64,7 +64,7 @@
   </div>
 
 
-  <h3>Directions</h3>
+  <h3><i class="bx bx-directions"></i> Directions</h3>
   <p>{park.directionsInfo}</p>
   <a href={park.directionsUrl} target="_blank">Website</a>
 </main>
