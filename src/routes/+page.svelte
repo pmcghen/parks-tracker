@@ -19,8 +19,8 @@
 
 <main class="container">
   <p>
-    Whether you're taking the family out for a leisurely afternoon stroll or gearing up for a weekend of 
-    {activity} at {randomPark.fullName}, our national parks have a lot to offer. You can use the National Parks Tracker
+    Whether you're taking the family out for a leisurely afternoon stroll or gearing up for a weeklong {activity}
+    adventure at {randomPark.fullName}, our national parks have a lot to offer. You can use the National Parks Tracker
     to search for your new favorite spot, show off which parks you've visited, or save your favorites to add to your 
     bucket list!
   </p>
