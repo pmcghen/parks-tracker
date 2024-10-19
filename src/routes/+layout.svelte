@@ -12,10 +12,11 @@
 </svelte:head>
 
 <header>
-  <h1>Let's go to the park!</h1>
   <nav>
     <a href="/">Home</a>
     <a href="/parks">All parks</a>
+  </nav>
+  <div>
     {#if hasSession}
       <img
         class="avatar"
@@ -30,12 +31,10 @@
         </svelte:fragment>
       </SignIn>
     {/if}
-  </nav>
+  </div>
 </header>
 
-<main class="container">
-  <slot />
-</main>
+<slot />
 
 <footer>
   © {new Date().getFullYear()}
@@ -46,6 +45,16 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0.75rem;
+
+    & div {
+      display: flex;
+      align-items: center;
+    }
+
+    & button {
+      margin-inline-start: 1rem;
+    }
   }
 
   nav {

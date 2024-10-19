@@ -27,15 +27,17 @@
 
 <div class="container">
   {#if parks.length}
-    <h2>National Parks</h2>
-    {#each parks as park}
-      <Card
-        name={park.fullName}
-        location={park.states}
-        isFree={!park.entranceFees.length}
-        parkCode={park.parkCode}
-      />
-    {/each}
+    <h1>National Parks</h1>
+    <div class="grid">
+      {#each parks as park}
+        <Card
+          name={park.fullName}
+          location={park.states}
+          isFree={!park.entranceFees.length}
+          parkCode={park.parkCode}
+        />
+      {/each}
+    </div>
   {/if}
 
   {#if pageLinks.length}

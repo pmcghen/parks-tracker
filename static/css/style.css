@@ -1,39 +1,71 @@
 :root {
-    --font-color: #000F08;
-    --link-color: #1C3738;
-    --alt-link-color: #8BAAAD;
-    --background-color: #F4FFF8;
+  --font-color: #000f08;
+  --link-color: #1c3738;
+  --alt-link-color: #8baaad;
+  --background-color: #fbfffc;
 
-    --light-grey: #4D4847;
+  --light-grey: hsl(10, 4%, 29%);
 
-    color: var(--font-color);
-    background: var(--background-color);
+  --body-font: ui-rounded, "Hiragino Maru Gothic ProN", Quicksand, Comfortaa,
+    Manjari, "Arial Rounded MT", "Arial Rounded MT Bold", Calibri,
+    source-sans-pro, sans-serif;
+  --box-shadow: 4px 4px 8px hsla(10, 4%, 29%, 0.25);
+
+  color: var(--font-color);
+  background: var(--background-color);
+  font-family: var(--body-font);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --font-color: #F4FFF8;
-        --background-color: #000F08;
-        --link-color: var(--alt-link-color);
-    }
+  :root {
+    --font-color: #f4fff8;
+    --background-color: #01180d;
+    --link-color: var(--alt-link-color);
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
 }
 
 a {
-    color: var(--link-color);
+  color: var(--link-color);
 }
 
 .container {
-    width: 80%;
-    max-width: 1440px;
-    margin-left: auto;
-    margin-right: auto;
+  width: 80%;
+  max-width: 120ch;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.5rem;
 }
 
 .img-responsive {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 footer {
-    text-align: center;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
 }
