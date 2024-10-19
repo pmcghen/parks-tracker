@@ -4,6 +4,9 @@
   const { park, weather } = data;
 
   const parkImage = park.images[0];
+
+  console.log(park);
+  
 </script>
 
 <svelte:head>
@@ -14,12 +17,17 @@
   <p>{park.description}</p>
   <img class="img-responsive" src={parkImage.url} alt={parkImage.altText} />
 
+  <h2 class="sr-only">Activities</h2>
   <ul>
     {#each park.activities as activity}
       <li>
         {activity.name}
       </li>
     {/each}
+  </ul>
+  
+  <h2 class="sr-only">Topics</h2>
+  <ul>
     {#each park.topics as topic}
       <li>
         {topic.name}
@@ -31,14 +39,84 @@
   <div class="grid">
     <div>
       <h3><i class="bx bx-time"></i> Hours</h3>
+      {#if park.operatingHours.length}
+        {#each park.operatingHours as hoursDetail}
+          <p>{hoursDetail.description}</p>
+          <ul>
+            <li>
+              <strong>Sunday</strong>: {hoursDetail.standardHours.sunday}
+            </li>
+            <li>
+              <strong>Monday</strong>: {hoursDetail.standardHours.monday}
+            </li>
+            <li>
+              <strong>Tuesday</strong>: {hoursDetail.standardHours.tuesday}
+            </li>
+            <li>
+              <strong>Wednesday</strong>: {hoursDetail.standardHours.wednesday}
+            </li>
+            <li>
+              <strong>Thursday</strong>: {hoursDetail.standardHours.thursday}
+            </li>
+            <li>
+              <strong>Friday</strong>: {hoursDetail.standardHours.friday}
+            </li>
+            <li>
+              <strong>Saturday</strong>: {hoursDetail.standardHours.saturday}
+            </li>
+          </ul>
+
+          {#if hoursDetail.exceptions.length}
+          <h4>Exceptions</h4>
+          <ul>
+            {#each hoursDetail.exceptions as exception}
+                {#if exception.name.includes("Closed")}
+                  <li>
+                    {exception.name}
+                  </li>
+                {/if}
+              {/each}
+          </ul>
+          {/if}
+        {/each}
+      {/if}
     </div>
     <div>
       <h3><i class="bx bx-phone"></i> Contact</h3>
+      {#if park.contacts.phoneNumbers.length}
+        <h4>Phone Numbers</h4>
+        <ul>
+          {#each park.contacts.phoneNumbers as phoneNumber}
+            <li>{phoneNumber.phoneNumber}</li>
+          {/each}
+        </ul>
+      {/if}
+      {#if park.contacts.emailAddresses.length}
+        <h4>Email</h4>
+        <ul>
+          {#each park.contacts.emailAddresses as emailAddress}
+            <li>{emailAddress.emailAddress}</li>
+          {/each}
+        </ul>
+      {/if}
     </div>
     <div>
       <h3><i class="bx bx-money-withdraw"></i> Fees</h3>
-      {#if park.fees.length}
-        Money
+      {#if park.entranceFees.length}
+        {#each park.entranceFees as fee}
+          <div>
+            <h4>{fee.title} (${fee.cost})</h4>
+            <p>{fee.description}</p>
+          </div>
+        {/each}
+        {#if park.entrancePasses.length}
+          {#each park.entrancePasses as pass}
+            <div>
+              <h4>{pass.title} (${pass.cost})</h4>
+              <p>{pass.description}</p>
+            </div>
+          {/each}
+        {/if}
       {:else}
         No entrance fee
       {/if}
@@ -74,5 +152,15 @@
   h3 {
     line-height: 1.75;
     border-bottom: solid 1px var(--link-color);
+  }
+
+  h4 {
+    margin-bottom: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 </style>

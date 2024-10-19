@@ -69,3 +69,12 @@ footer {
   gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
 }
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
