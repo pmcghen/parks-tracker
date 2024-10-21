@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Tag from '$lib/Tag.svelte';
+
   export let data;
 
   const { park, weather } = data;
@@ -14,20 +16,20 @@
   <p>{park.description}</p>
   <img class="img-responsive" src={parkImage.url} alt={parkImage.altText} />
 
-  <h2 class="sr-only">Activities</h2>
-  <ul>
+  <h2>Activities</h2>
+  <ul class="tag-list">
     {#each park.activities as activity}
       <li>
-        <a href="/activities/{activity.id}">{activity.name}</a>
+        <Tag type="activity" link="/activities/{activity.id}">{activity.name}</Tag>
       </li>
     {/each}
   </ul>
   
-  <h2 class="sr-only">Topics</h2>
-  <ul>
+  <h2>Topics</h2>
+  <ul class="tag-list">
     {#each park.topics as topic}
       <li>
-        <a href="/topics/{topic.id}">{topic.name}</a>
+        <Tag type="topic" link="/topics/{topic.id}">{topic.name}</Tag>
       </li>
     {/each}
   </ul>
@@ -159,5 +161,11 @@
     margin-top: 0;
     padding: 0;
     list-style: none;
+  }
+
+  .tag-list li {
+    display: inline-block;
+    margin-inline-end: 0.5rem;
+    margin-block-end: 0.75rem;
   }
 </style>
