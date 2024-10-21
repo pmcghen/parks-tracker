@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ params }) => {
   );
   const parksData = await parksResponse.json();
 
-  if (parksResponse.status === 200) {
+  if (parksResponse.status === 200 && parksData.data.length) {
     const latLong = `${parksData.data[0].latitude},${parksData.data[0].longitude}`;
     const weatherResponse = await fetch(
       `https://api.weatherapi.com/v1/current.json?q=${latLong}&key=${WEATHER_API_KEY}`

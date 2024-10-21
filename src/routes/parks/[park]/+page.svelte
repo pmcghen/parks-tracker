@@ -3,7 +3,7 @@
 
   const { park, weather } = data;
 
-  const parkImage = park.images[0];  
+  const parkImage = park.images[0];
 </script>
 
 <svelte:head>
@@ -18,7 +18,7 @@
   <ul>
     {#each park.activities as activity}
       <li>
-        {activity.name}
+        <a href="/activities/{activity.id}">{activity.name}</a>
       </li>
     {/each}
   </ul>

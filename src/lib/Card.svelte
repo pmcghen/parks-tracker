@@ -1,7 +1,7 @@
 <script lang="ts">
   export let name: string;
   export let location: string;
-  export let isFree: boolean;
+  export let isFree = false;
   export let parkCode: string;
 </script>
 
