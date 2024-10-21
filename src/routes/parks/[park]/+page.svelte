@@ -27,7 +27,7 @@
   <ul>
     {#each park.topics as topic}
       <li>
-        {topic.name}
+        <a href="/topics/{topic.id}">{topic.name}</a>
       </li>
     {/each}
   </ul>
