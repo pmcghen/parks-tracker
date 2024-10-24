@@ -1,9 +1,14 @@
 <script lang="ts">
-  export let type: "topic" | "activity";
-  export let link: string;
+  interface Props {
+    type: "topic" | "activity";
+    link: string;
+    children?: import('svelte').Snippet;
+  }
+
+  let { type, link, children }: Props = $props();
 </script>
 
-<a href={link} class={type}><slot /></a>
+<a href={link} class={type}>{@render children?.()}</a>
 
 <style>
   a {

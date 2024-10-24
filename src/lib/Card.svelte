@@ -1,8 +1,17 @@
 <script lang="ts">
-  export let name: string;
-  export let location: string;
-  export let isFree = false;
-  export let parkCode: string;
+  interface Props {
+    name: string;
+    location: string;
+    isFree?: boolean;
+    parkCode: string;
+  }
+
+  let {
+    name,
+    location,
+    isFree = false,
+    parkCode
+  }: Props = $props();
 </script>
 
 <div class="card">

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { browser } from "$app/environment";
   import Card from "$lib/Card.svelte";
-  export let data;
+  let { data } = $props();
 
   interface PageLink {
     url: string;

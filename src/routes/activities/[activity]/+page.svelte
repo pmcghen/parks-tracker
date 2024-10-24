@@ -1,7 +1,7 @@
 <script lang="ts">
   import Card from "$lib/Card.svelte";
 
-    export let data;
+  let { data } = $props();
     const { activity, parks } = data;
 </script>
 

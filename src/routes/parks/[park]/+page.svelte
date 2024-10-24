@@ -1,7 +1,7 @@
 <script lang="ts">
   import Tag from '$lib/Tag.svelte';
 
-  export let data;
+  let { data } = $props();
 
   const { park, weather } = data;
 

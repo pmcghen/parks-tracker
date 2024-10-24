@@ -3,8 +3,13 @@
   import { signOut } from "@auth/sveltekit/client";
 
   import { page } from "$app/stores";
+  interface Props {
+    children?: import('svelte').Snippet;
+  }
 
-  $: hasSession = $page.data.session;
+  let { children }: Props = $props();
+
+  let hasSession = $derived($page.data.session);
 </script>
 
 <svelte:head>
@@ -23,18 +28,20 @@
         src={$page.data.session?.user?.image}
         alt={$page.data.session?.user?.name}
       />
-      <button on:click={signOut}>Sign Out</button>
+      <button onclick={signOut}>Sign Out</button>
     {:else}
       <SignIn provider="github" signInPage="log-in">
-        <svelte:fragment slot="submitButton">
-          Sign In with GitHub
-        </svelte:fragment>
+        {#snippet submitButton()}
+              
+            Sign In with GitHub
+          
+              {/snippet}
       </SignIn>
     {/if}
   </div>
 </header>
 
-<slot />
+{@render children?.()}
 
 <footer>
   © {new Date().getFullYear()}
