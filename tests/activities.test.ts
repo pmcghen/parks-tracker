@@ -6,7 +6,7 @@ test.use({ storageState: { cookies: [], origins: [] } });
 
 test.describe("parks listing", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/activities/42FD78B9-2B90-4AA9-BC43-F10E9FEA8B5A");
+    await page.goto("/activities/13A57703-BB1A-41A2-94B8-53B692EB7238");
   });
 
   test("should not have any automatically detectable accessibility errors", async ({
