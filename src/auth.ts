@@ -6,4 +6,5 @@ import { prisma } from "./prisma";
 export const { handle, signIn } = SvelteKitAuth({
   adapter: PrismaAdapter(prisma),
   providers: [GitHub],
+  trustHost: true,
 });

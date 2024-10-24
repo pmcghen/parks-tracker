@@ -1,41 +1,41 @@
 {
-	"name": "dashboard",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"test": "npm run test:integration && npm run test:unit",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "eslint .",
-		"test:integration": "playwright test",
-		"test:unit": "vitest"
-	},
-	"devDependencies": {
-		"@axe-core/playwright": "^4.10.0",
-		"@playwright/test": "^1.28.1",
-		"@sveltejs/adapter-auto": "^3.0.0",
-		"@sveltejs/kit": "^2.5.27",
-		"@sveltejs/vite-plugin-svelte": "^4.0.0",
-		"@types/eslint": "^8.56.0",
-		"@typescript-eslint/eslint-plugin": "^7.0.0",
-		"@typescript-eslint/parser": "^7.0.0",
-		"eslint": "^8.56.0",
-		"eslint-plugin-svelte": "^2.45.1",
-		"prisma": "^5.20.0",
-		"svelte": "^5.0.0",
-		"svelte-check": "^4.0.0",
-		"tslib": "^2.4.1",
-		"typescript": "^5.5.0",
-		"vite": "^5.4.8",
-		"vitest": "^1.2.0"
-	},
-	"type": "module",
-	"dependencies": {
-		"@auth/prisma-adapter": "^2.5.3",
-		"@auth/sveltekit": "^1.5.3",
-		"@prisma/client": "^5.20.0"
-	}
+  "name": "parkstracker",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "npm run test:integration && npm run test:unit",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "eslint .",
+    "test:integration": "playwright test",
+    "test:unit": "vitest"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "^1.28.1",
+    "@sveltejs/adapter-auto": "^3.0.0",
+    "@sveltejs/kit": "^2.5.27",
+    "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "@types/eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-svelte": "^2.45.1",
+    "prisma": "^5.20.0",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "tslib": "^2.4.1",
+    "typescript": "^5.5.0",
+    "vite": "^5.4.8",
+    "vitest": "^1.2.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "@auth/prisma-adapter": "^2.5.3",
+    "@auth/sveltekit": "^1.5.3",
+    "@prisma/client": "^5.20.0"
+  }
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Tag from '$lib/Tag.svelte';
+  import Tag from "$lib/Tag.svelte";
 
   let { data } = $props();
 
@@ -20,11 +20,13 @@
   <ul class="tag-list">
     {#each park.activities as activity}
       <li>
-        <Tag type="activity" link="/activities/{activity.id}">{activity.name}</Tag>
+        <Tag type="activity" link="/activities/{activity.id}">
+          {activity.name}
+        </Tag>
       </li>
     {/each}
   </ul>
-  
+
   <h2>Topics</h2>
   <ul class="tag-list">
     {#each park.topics as topic}
@@ -66,16 +68,16 @@
           </ul>
 
           {#if hoursDetail.exceptions.length}
-          <h4>Exceptions</h4>
-          <ul>
-            {#each hoursDetail.exceptions as exception}
+            <h4>Exceptions</h4>
+            <ul>
+              {#each hoursDetail.exceptions as exception}
                 {#if exception.name.includes("Closed")}
                   <li>
                     {exception.name}
                   </li>
                 {/if}
               {/each}
-          </ul>
+            </ul>
           {/if}
         {/each}
       {/if}
@@ -136,10 +138,11 @@
         {weather.wind_mph} from {weather.wind_dir}
       </p>
 
-      <small>Last updated {new Date(weather.last_updated).toLocaleString()}</small>
+      <small>
+        Last updated {new Date(weather.last_updated).toLocaleString()}
+      </small>
     </div>
   </div>
-
 
   <h3><i class="bx bx-directions"></i> Directions</h3>
   <p>{park.directionsInfo}</p>

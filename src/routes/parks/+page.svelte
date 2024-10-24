@@ -5,7 +5,7 @@
 
   interface PageLink {
     url: string;
-    number: Number;
+    number: number;
   }
 
   const { parks, pages } = data;
