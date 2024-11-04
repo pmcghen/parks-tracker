@@ -32,10 +32,13 @@
     {:else}
       <SignIn provider="github" signInPage="log-in">
         {#snippet submitButton()}
-              
-            Sign In with GitHub
-          
-              {/snippet}
+          Sign In with GitHub
+        {/snippet}
+      </SignIn>
+      <SignIn provider="google" signInPage="log-in">
+        {#snippet submitButton()}
+          Sign In with Google
+        {/snippet}
       </SignIn>
     {/if}
   </div>
