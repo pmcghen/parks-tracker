@@ -25,7 +25,7 @@
   <title>All Parks | National Parks Tracker</title>
 </svelte:head>
 
-<div class="container">
+<main class="container">
   {#if parks.length}
     <h1>National Parks</h1>
     <div class="grid">
@@ -45,4 +45,4 @@
       <a data-sveltekit-reload href={link.url}>{link.number}</a>
     {/each}
   {/if}
-</div>
+</main>
