@@ -4,7 +4,7 @@ import Google from "@auth/sveltekit/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "./prisma";
 
-export const { handle, signIn } = SvelteKitAuth({
+export const { handle, signIn, signOut } = SvelteKitAuth({
   adapter: PrismaAdapter(prisma),
   providers: [GitHub, Google],
   trustHost: true,

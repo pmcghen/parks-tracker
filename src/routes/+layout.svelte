@@ -1,8 +1,7 @@
 <script lang="ts">
-  import { SignIn } from "@auth/sveltekit/components";
-  import { signOut } from "@auth/sveltekit/client";
-
+  import { SignIn, SignOut } from "@auth/sveltekit/components";
   import { page } from "$app/stores";
+
   interface Props {
     children?: import('svelte').Snippet;
   }
@@ -28,7 +27,11 @@
         src={$page.data.session?.user?.image}
         alt={$page.data.session?.user?.name}
       />
-      <button onclick={signOut}>Sign Out</button>
+      <SignOut>
+        {#snippet submitButton()}
+          Sign Out
+        {/snippet}
+      </SignOut>
     {:else}
       <SignIn provider="github" signInPage="log-in">
         {#snippet submitButton()}
@@ -61,10 +64,6 @@
       display: flex;
       align-items: center;
     }
-
-    & button {
-      margin-inline-start: 1rem;
-    }
   }
 
   nav {
@@ -77,5 +76,6 @@
     border-radius: 100%;
     height: 48px;
     width: 48px;
+    margin-inline-end: 1rem;
   }
 </style>
