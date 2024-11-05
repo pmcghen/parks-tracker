@@ -5,17 +5,11 @@ import { prisma } from "../../../prisma";
 
 export const load: PageServerLoad = async ({ params, parent }) => {
   const userId = (await parent()).session?.user?.id;
+  let user;
+  let isVisited = false;
   let park = await prisma.park.findFirst({
     where: {
       npsId: params.park,
-    },
-  });
-  const user = await prisma.user.findUnique({
-    where: {
-      id: userId,
-    },
-    include: {
-      Park_ParksVisited: true,
     },
   });
 
@@ -27,7 +21,18 @@ export const load: PageServerLoad = async ({ params, parent }) => {
     });
   }
 
-  const isVisited = !!user?.Park_ParksVisited.includes(park);
+  if (userId) {
+    user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+      include: {
+        Park_ParksVisited: true,
+      },
+    });
+
+    isVisited = !!user?.Park_ParksVisited.includes(park);
+  }
 
   const parksResponse = await fetch(
     `https://developer.nps.gov/api/v1/parks?parkCode=${params.park}&api_key=${PARKS_API_KEY}`
