@@ -71,6 +71,16 @@ model VerificationToken {
 model Park {
   id                         String     @id @default(uuid())
   npsId                      String
+  description                String
+  designation                String
+  directionsInfo             String
+  directionsUrl              String
+  fullName                   String
+  latitude                   String
+  longitude                  String
+  states                     String
+  url                        String
+  weatherInfo                String
   User_ParksVisited          User[]     @relation("ParksVisited")
   Topic_ParksWithTopic       Topic[]    @relation("ParksWithTopic")
   Activity_ParksWithActivity Activity[] @relation("ParksWithActivity")
