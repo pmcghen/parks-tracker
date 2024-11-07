@@ -74,6 +74,8 @@ model Park {
   User_ParksVisited          User[]     @relation("ParksVisited")
   Topic_ParksWithTopic       Topic[]    @relation("ParksWithTopic")
   Activity_ParksWithActivity Activity[] @relation("ParksWithActivity")
+  Contact                    Contact[]
+  Address                    Address[]
 }
 
 model Topic {
@@ -121,4 +123,30 @@ model EndDate {
   holiday String
   month   Int
   Fee     Fee[]
+}
+
+model Contact {
+  id               String @id @default(uuid())
+  emailAddress     String
+  emailDescription String
+  phoneNumber      String
+  phoneDescription String
+  phoneExtension   String
+  phoneType        String
+  park             Park   @relation(fields: [parkId], references: [id])
+  parkId           String
+}
+
+model Address {
+  id                    String @id @default(uuid())
+  city                  String
+  countryCode           String
+  line1                 String
+  line2                 String
+  line3                 String
+  postalCode            String
+  provinceTerritoryCode String
+  type                  String
+  park                  Park   @relation(fields: [parkId], references: [id])
+  parkId                String
 }
