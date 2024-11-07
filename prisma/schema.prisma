@@ -87,3 +87,38 @@ model Activity {
   name                   String
   Park_ParksWithActivity Park[] @relation("ParksWithActivity")
 }
+
+model Fee {
+  id                         String    @id @default(uuid())
+  cost                       String
+  description                String
+  endDate                    EndDate   @relation(fields: [endDateId], references: [id])
+  entranceFeeType            String
+  exceptions                 String
+  informationUrl             String
+  payGovPurchaseUrl          String
+  paymentDescription         String
+  purchaseUrl                String
+  recGovPurchaseUrl          String
+  startDate                  StartDate @relation(fields: [startDateId], references: [id])
+  timedEntryLocation         String
+  timedEntryShortDescription String
+  endDateId                  String
+  startDateId                String
+}
+
+model StartDate {
+  id      String @id @default(uuid())
+  day     Int
+  holiday String
+  month   Int
+  Fee     Fee[]
+}
+
+model EndDate {
+  id      String @id @default(uuid())
+  day     Int
+  holiday String
+  month   Int
+  Fee     Fee[]
+}
