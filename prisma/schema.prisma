@@ -69,14 +69,21 @@ model VerificationToken {
 }
 
 model Park {
-  id                   String  @id @default(uuid())
-  npsId                String
-  User_ParksVisited    User[]  @relation("ParksVisited")
-  Topic_ParksWithTopic Topic[] @relation("ParksWithTopic")
+  id                         String     @id @default(uuid())
+  npsId                      String
+  User_ParksVisited          User[]     @relation("ParksVisited")
+  Topic_ParksWithTopic       Topic[]    @relation("ParksWithTopic")
+  Activity_ParksWithActivity Activity[] @relation("ParksWithActivity")
 }
 
 model Topic {
   id                  String @id @default(uuid())
   name                String
   Park_ParksWithTopic Park[] @relation("ParksWithTopic")
+}
+
+model Activity {
+  id                     String @id @default(uuid())
+  name                   String
+  Park_ParksWithActivity Park[] @relation("ParksWithActivity")
 }
