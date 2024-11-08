@@ -1,11 +1,14 @@
 <script lang="ts">
   import Tag from "$lib/Tag.svelte";
+  import Actions from "./Actions.svelte";
+
+  import { page } from "$app/stores";
 
   let { data } = $props();
 
   const { park, weather } = data;
 
-  const parkImage = park.images[0];
+  let hasSession = $derived($page.data.session);
 </script>
 
 <svelte:head>
@@ -14,11 +17,10 @@
 <main class="container">
   <h1>{park.fullName} (<a href={park.url} target="_blank">Website</a>)</h1>
   <p>{park.description}</p>
-  <img class="img-responsive" src={parkImage.url} alt={parkImage.altText} />
 
   <h2>Activities</h2>
   <ul class="tag-list">
-    {#each park.activities as activity}
+    {#each park.Activity_ParksWithActivity as activity}
       <li>
         <Tag type="activity" link="/activities/{activity.id}">
           {activity.name}
@@ -29,7 +31,7 @@
 
   <h2>Topics</h2>
   <ul class="tag-list">
-    {#each park.topics as topic}
+    {#each park.Topic_ParksWithTopic as topic}
       <li>
         <Tag type="topic" link="/topics/{topic.id}">{topic.name}</Tag>
       </li>
@@ -40,7 +42,7 @@
   <div class="grid">
     <div>
       <h3><i class="bx bx-time"></i> Hours</h3>
-      {#if park.operatingHours.length}
+      <!-- {#if park.operatingHours.length}
         {#each park.operatingHours as hoursDetail}
           <p>{hoursDetail.description}</p>
           <ul>
@@ -80,11 +82,11 @@
             </ul>
           {/if}
         {/each}
-      {/if}
+      {/if} -->
     </div>
     <div>
       <h3><i class="bx bx-phone"></i> Contact</h3>
-      {#if park.contacts.phoneNumbers.length}
+      <!-- {#if park.contacts.phoneNumbers.length}
         <h4>Phone Numbers</h4>
         <ul>
           {#each park.contacts.phoneNumbers as phoneNumber}
@@ -99,11 +101,11 @@
             <li>{emailAddress.emailAddress}</li>
           {/each}
         </ul>
-      {/if}
+      {/if} -->
     </div>
     <div>
       <h3><i class="bx bx-money-withdraw"></i> Fees</h3>
-      {#if park.entranceFees.length}
+      <!-- {#if park.entranceFees.length}
         {#each park.entranceFees as fee}
           <div>
             <h4>{fee.title} (${fee.cost})</h4>
@@ -120,7 +122,7 @@
         {/if}
       {:else}
         No entrance fee
-      {/if}
+      {/if} -->
     </div>
     <div>
       <h3><i class="bx bx-leaf"></i> Weather</h3>
