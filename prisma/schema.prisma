@@ -90,12 +90,14 @@ model Park {
 
 model Topic {
   id                  String @id @default(uuid())
+  npsId               String @unique
   name                String
   Park_ParksWithTopic Park[] @relation("ParksWithTopic")
 }
 
 model Activity {
   id                     String @id @default(uuid())
+  npsId                  String @unique
   name                   String
   Park_ParksWithActivity Park[] @relation("ParksWithActivity")
 }
