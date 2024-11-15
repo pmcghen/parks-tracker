@@ -69,7 +69,7 @@ model VerificationToken {
 }
 
 model Park {
-  id                         String     @id @default(uuid())
+  id                         String       @id @default(uuid())
   npsId                      String
   description                String
   designation                String
@@ -81,11 +81,12 @@ model Park {
   states                     String
   url                        String
   weatherInfo                String
-  User_ParksVisited          User[]     @relation("ParksVisited")
-  Topic_ParksWithTopic       Topic[]    @relation("ParksWithTopic")
-  Activity_ParksWithActivity Activity[] @relation("ParksWithActivity")
+  User_ParksVisited          User[]       @relation("ParksVisited")
+  Topic_ParksWithTopic       Topic[]      @relation("ParksWithTopic")
+  Activity_ParksWithActivity Activity[]   @relation("ParksWithActivity")
   Contact                    Contact[]
   Address                    Address[]
+  Campground                 Campground[]
 }
 
 model Topic {
@@ -138,19 +139,21 @@ model EndDate {
 }
 
 model Contact {
-  id               String @id @default(uuid())
+  id               String      @id @default(uuid())
   emailAddress     String
   emailDescription String
   phoneNumber      String
   phoneDescription String
   phoneExtension   String
   phoneType        String
-  park             Park   @relation(fields: [parkId], references: [id])
+  park             Park        @relation(fields: [parkId], references: [id])
   parkId           String
+  Campground       Campground? @relation(fields: [campgroundId], references: [id])
+  campgroundId     String?
 }
 
 model Address {
-  id                    String @id @default(uuid())
+  id                    String      @id @default(uuid())
   city                  String
   countryCode           String
   line1                 String
@@ -159,6 +162,63 @@ model Address {
   postalCode            String
   provinceTerritoryCode String
   type                  String
-  park                  Park   @relation(fields: [parkId], references: [id])
+  park                  Park        @relation(fields: [parkId], references: [id])
   parkId                String
+  Campground            Campground? @relation(fields: [campgroundId], references: [id])
+  campgroundId          String?
+}
+
+model Campground {
+  id                          String    @id @default(uuid())
+  description                 String
+  directionsOverview          String
+  directionsUrl               String
+  geometryPoiId               String
+  npsId                       String
+  lastIndexedDate             String
+  latitude                    String
+  longitude                   String
+  name                        String
+  park                        Park      @relation(fields: [parkId], references: [id])
+  parkId                      String
+  regulationsOverview         String
+  fees                        String[]
+  regulationsUrl              String
+  reservationsDescription     String
+  reservationsSitesFirstCome  String
+  reservationsSitesReservable String
+  reservationsUrl             String
+  weatherOverview             String
+  contacts                    Contact[]
+  addresses                   Address[]
+  // Accessibility
+  adaInfo                     String
+  wheelchairAccess            String
+  internetInfo                String
+  rvAllowed                   String
+  rvMaxLength                 String
+  rvInfo                      String
+  trailerAllowed              String
+  trailerMaxLength            String
+  cellphoneInfo               String
+  fireStovePolicy             String
+  additionalInfo              String
+  accessRoads                 String[]
+  classifications             String[]
+  // Amenities
+  trashRecyclingCollection    String
+  toilets                     String[]
+  internetConnectivity        String
+  showers                     String[]
+  cellphoneReception          String
+  laundry                     String
+  amphitheather               String
+  dumpStation                 String
+  campStore                   String
+  staffOrVolunteerHostOnsite  String
+  potableWater                String[]
+  iceAvailable                String
+  firewoodForSale             String
+  ampitheather                String
+  foodStorageLockers          String
 }
