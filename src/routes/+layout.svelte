@@ -3,7 +3,7 @@
   import { page } from "$app/stores";
 
   interface Props {
-    children?: import('svelte').Snippet;
+    children?: import("svelte").Snippet;
   }
 
   let { children }: Props = $props();
@@ -18,7 +18,7 @@
 <header>
   <nav>
     <a href="/">Home</a>
-    <a href="/parks">All parks</a>
+    <a data-sveltekit-reload href="/parks">All parks</a>
   </nav>
   <div>
     {#if hasSession}
