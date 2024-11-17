@@ -87,6 +87,7 @@ model Park {
   Contact                    Contact[]
   Address                    Address[]
   Campground                 Campground[]
+  Amenity_ParksWithAmenity   Amenity[]    @relation("ParksWithAmenity")
 }
 
 model Topic {
@@ -221,4 +222,11 @@ model Campground {
   firewoodForSale             String
   ampitheather                String
   foodStorageLockers          String
+}
+
+model Amenity {
+  id                    String @id @default(uuid())
+  npsId                 String
+  name                  String
+  Park_ParksWithAmenity Park[] @relation("ParksWithAmenity")
 }
