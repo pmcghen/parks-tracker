@@ -88,6 +88,7 @@ model Park {
   Address                    Address[]
   Campground                 Campground[]
   Amenity_ParksWithAmenity   Amenity[]    @relation("ParksWithAmenity")
+  Image                      Image[]
 }
 
 model Topic {
@@ -229,4 +230,16 @@ model Amenity {
   npsId                 String
   name                  String
   Park_ParksWithAmenity Park[] @relation("ParksWithAmenity")
+}
+
+model Image {
+  id      String @id @default(uuid())
+  npsId   Int
+  credit  String
+  altText String
+  title   String
+  caption String
+  url     String
+  park    Park   @relation(fields: [parkId], references: [id])
+  parkId  String
 }
