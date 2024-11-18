@@ -23,7 +23,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --font-color: #f4fff8;
-    --background-color: #01180d;
+    --background-color: #000302;
     --link-color: var(--alt-link-color);
   }
 }
