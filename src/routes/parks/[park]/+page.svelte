@@ -6,7 +6,7 @@
 
   let { data } = $props();
 
-  const { park, weather } = data;
+  const { park, weather, images } = data;
 
   let hasSession = $derived($page.data.session);
 </script>
@@ -16,6 +16,16 @@
 </svelte:head>
 <main class="container">
   <h1>{park.fullName} (<a href={park.url} target="_blank">Website</a>)</h1>
+
+  {#if images.length}
+    <img src={images[0].url} alt={images[0].altText} class="img-responsive" />
+    <div class="thumbnails">
+      {#each images as image}
+        <img class="thumbnail" src={image.url} alt={image.altText} />
+      {/each}
+    </div>
+  {/if}
+
   <p>{park.description}</p>
 
   <h2>Activities</h2>
@@ -166,6 +176,20 @@
     margin-top: 0;
     padding: 0;
     list-style: none;
+  }
+
+  .thumbnails {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .thumbnail {
+    clip-path: fill-box;
+    border-radius: 0.66rem;
+    height: 160px;
+    width: auto;
   }
 
   .tag-list li {

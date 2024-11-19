@@ -3,6 +3,19 @@ import { error } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 import { prisma } from "../../../prisma";
 
+interface TagItem {
+  id: string;
+  name: string;
+}
+
+interface Image {
+  credit: string;
+  altText: string;
+  title: string;
+  caption: string;
+  url: string;
+}
+
 interface Park {
   parkCode: string;
   description: string;
@@ -15,12 +28,12 @@ interface Park {
   states: string;
   url: string;
   weatherInfo: string;
-  topics: { id: string; name: string }[];
-  activities: { id: string; name: string }[];
+  topics: TagItem[];
+  activities: TagItem[];
+  images: Image[];
 }
 
 const getWeather = async (lat = "0", long = "0") => {
-  console.log(lat, long);
   const weatherResponse = await fetch(
     `https://api.weatherapi.com/v1/current.json?q=${lat},${long}&key=${WEATHER_API_KEY}`
   );
@@ -61,6 +74,7 @@ export const load: PageServerLoad = async ({ params }) => {
     const npsPark = await getParkFromNPS(params.park);
     const parkTopics = [];
     const parkActivities = [];
+    const parkImages = [];
 
     if (npsPark?.topics) {
       for (const topic of npsPark.topics) {
@@ -84,6 +98,21 @@ export const load: PageServerLoad = async ({ params }) => {
       }
     }
 
+    if (npsPark?.images) {
+      for (const image of npsPark.images) {
+        const imageObj = {
+          credit: image.credit,
+          altText: image.altText,
+          title: image.title,
+          caption: image.caption,
+          url: image.url,
+        };
+
+        parkImages.push(imageObj);
+      }
+    }
+
+    // TODO: Work out how to keep track of data that would be skipped so it's still included in the park details
     const topics = await prisma.topic.createManyAndReturn({
       data: parkTopics,
       skipDuplicates: true,
@@ -106,6 +135,9 @@ export const load: PageServerLoad = async ({ params }) => {
         longitude: npsPark?.longitude || "",
         states: npsPark?.states || "",
         url: npsPark?.url || "",
+        Image: {
+          createMany: { data: parkImages },
+        },
         weatherInfo: npsPark?.weatherInfo || "",
         Topic_ParksWithTopic: {
           connect: topics,
@@ -121,12 +153,17 @@ export const load: PageServerLoad = async ({ params }) => {
     });
   }
 
-  console.log(park);
+  const images = await prisma.image.findMany({
+    where: {
+      parkId: park.id,
+    },
+  });
 
   const weather = await getWeather(park.latitude, park.longitude);
 
   return {
     park,
+    images,
     weather: weather.current,
   };
 };
