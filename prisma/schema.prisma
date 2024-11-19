@@ -234,7 +234,6 @@ model Amenity {
 
 model Image {
   id      String @id @default(uuid())
-  npsId   Int
   credit  String
   altText String
   title   String
