@@ -2,23 +2,21 @@
   <title>Home | National Parks Tracker</title>
 </svelte:head>
 
-<main>
-  <div class="hero">
-    <div class="content">
-      <h1>National Parks Tracker</h1>
-      <p class="hero--details">Explore U.S. National Parks</p>
-    </div>
+<div class="hero">
+  <div class="content">
+    <h1>National Parks Tracker</h1>
+    <p class="hero--details">Explore U.S. National Parks</p>
   </div>
-  <div class="container">
-    <p>
-      Whether you're taking the family out for a leisurely afternoon stroll or
-      gearing up for a weeklong adventure our national parks have a lot to
-      offer. You can use the National Parks Tracker to search for your new
-      favorite spot, show off which parks you've visited, or save your favorites
-      to add to your bucket list!
-    </p>
-  </div>
-</main>
+</div>
+<div class="container">
+  <p>
+    Whether you're taking the family out for a leisurely afternoon stroll or
+    gearing up for a weeklong adventure our national parks have a lot to offer.
+    You can use the National Parks Tracker to search for your new favorite spot,
+    show off which parks you've visited, or save your favorites to add to your
+    bucket list!
+  </p>
+</div>
 
 <style>
   .hero {
