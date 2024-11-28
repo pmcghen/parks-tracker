@@ -78,3 +78,7 @@ footer {
   height: 1px;
   overflow: hidden;
 }
+
+button:hover {
+  cursor: pointer;
+}

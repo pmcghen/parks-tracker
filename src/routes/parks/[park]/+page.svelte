@@ -9,6 +9,16 @@
   const { park, weather, images } = data;
 
   let hasSession = $derived($page.data.session);
+
+  const swapImage = (e: MouseEvent) => {
+    const mainImage = document.querySelector("#main-image") as HTMLImageElement;
+    const newImage = e.target as HTMLImageElement;
+
+    if (mainImage) {
+      mainImage.src = newImage.src;
+      mainImage.alt = newImage.alt;
+    }
+  };
 </script>
 
 <svelte:head>
@@ -18,10 +28,17 @@
   <h1>{park.fullName} (<a href={park.url} target="_blank">Website</a>)</h1>
 
   {#if images.length}
-    <img src={images[0].url} alt={images[0].altText} class="img-responsive" />
+    <img
+      src={images[0].url}
+      alt={images[0].altText}
+      id="main-image"
+      class="img-responsive"
+    />
     <div class="thumbnails">
       {#each images as image}
-        <img class="thumbnail" src={image.url} alt={image.altText} />
+        <button onclick={swapImage}>
+          <img class="thumbnail" src={image.url} alt={image.altText} />
+        </button>
       {/each}
     </div>
   {/if}
