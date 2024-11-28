@@ -155,11 +155,11 @@
       <h3><i class="bx bx-leaf"></i> Weather</h3>
       <p>{park.weatherInfo}</p>
       <p>
-        <strong>Current Temperature</strong>
+        <strong>Current temperature</strong>
         {weather.temp_f}°F
       </p>
       <p>
-        <strong>Feels Like</strong>
+        <strong>Feels like</strong>
         {weather.feelslike_f}°F
       </p>
       <p>
