@@ -1,14 +1,9 @@
 <script lang="ts">
   import Tag from "$lib/Tag.svelte";
-  import Actions from "./Actions.svelte";
-
-  import { page } from "$app/stores";
 
   let { data } = $props();
 
   const { park, weather, images } = data;
-
-  let hasSession = $derived($page.data.session);
 
   const swapImage = (e: MouseEvent) => {
     const mainImage = document.querySelector("#main-image") as HTMLImageElement;
@@ -183,10 +178,6 @@
   h3 {
     line-height: 1.75;
     border-bottom: solid 1px var(--link-color);
-  }
-
-  h4 {
-    margin-bottom: 0;
   }
 
   ul {
