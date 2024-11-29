@@ -22,11 +22,13 @@
   </nav>
   <div>
     {#if hasSession}
-      <img
-        class="avatar"
-        src={$page.data.session?.user?.image}
-        alt={$page.data.session?.user?.name}
-      />
+      <a href="/profile/me">
+        <img
+          class="avatar"
+          src={$page.data.session?.user?.image}
+          alt={$page.data.session?.user?.name}
+        />
+      </a>
       <SignOut>
         {#snippet submitButton()}
           Sign Out
@@ -47,7 +49,9 @@
   </div>
 </header>
 
-{@render children?.()}
+<main>
+  {@render children?.()}
+</main>
 
 <footer>
   © {new Date().getFullYear()}
