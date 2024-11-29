@@ -12,6 +12,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      PARKS_API_KEY: ${{ secrets.PARKS_API_KEY }}
 
     strategy:
       matrix:
@@ -25,7 +27,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-        env:
-          PARKS_API_KEY: ${{ secrets.PARKS_API_KEY }}
       - run: npm ci
       - run: npm test
