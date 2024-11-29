@@ -18,7 +18,6 @@ export const load: PageServerLoad = async (event) => {
     },
   })) as User;
 
-  console.log(userData);
   return {
     userData,
   };
