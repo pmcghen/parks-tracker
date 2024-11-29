@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PARKS_API_KEY: ${{ secrets.PARKS_API_KEY }}
+      WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
 
     strategy:
       matrix:
