@@ -32,7 +32,7 @@
   <title>All Parks | National Parks Tracker</title>
 </svelte:head>
 
-<main class="container">
+<div class="container">
   {#if parks.length}
     <h1>National Parks</h1>
     <div class="grid">
@@ -59,7 +59,7 @@
       {/each}
     </nav>
   {/if}
-</main>
+</div>
 
 <style>
   a {

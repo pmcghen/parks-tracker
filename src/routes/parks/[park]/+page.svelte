@@ -19,7 +19,8 @@
 <svelte:head>
   <title>{park.fullName} | National Parks Tracker</title>
 </svelte:head>
-<main class="container">
+
+<div class="container">
   <h1>{park.fullName} (<a href={park.url} target="_blank">Website</a>)</h1>
 
   {#if images.length}
@@ -171,7 +172,7 @@
   <h3><i class="bx bx-directions"></i> Directions</h3>
   <p>{park.directionsInfo}</p>
   <a href={park.directionsUrl} target="_blank">Website</a>
-</main>
+</div>
 
 <style>
   h2,
