@@ -18,8 +18,10 @@
   </h1>
   <p>Location: {userData?.location}</p>
   <p>Bio: {userData?.bio}</p>
-  <h2>Favorite parks</h2>
-  <h2>My wishlist</h2>
+  {#if !userData.private}
+    <h2>Favorite parks</h2>
+    <h2>My wishlist</h2>
+  {/if}
 </div>
 
 <style>

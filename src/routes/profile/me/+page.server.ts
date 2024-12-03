@@ -8,6 +8,7 @@ interface User {
   displayLastName: string | null;
   bio: string | null;
   location: string | null;
+  private: boolean;
 }
 
 export const load: PageServerLoad = async (event) => {
