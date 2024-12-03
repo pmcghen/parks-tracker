@@ -41,6 +41,17 @@
       <textarea name="bio" id="bio" value={userData.bio}></textarea>
     </div>
     <div>
+      <label>
+        <input
+          type="checkbox"
+          id="private"
+          name="private"
+          checked={userData.private}
+        />
+        Make my profile private
+      </label>
+    </div>
+    <div>
       <button type="reset">Reset</button>
       <button type="submit">Submit</button>
     </div>

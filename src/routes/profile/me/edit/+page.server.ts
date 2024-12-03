@@ -9,6 +9,7 @@ interface User {
   displayLastName: string | null;
   bio: string | null;
   location: string | null;
+  private: boolean;
 }
 
 export const load: PageServerLoad = async (event) => {
@@ -32,6 +33,7 @@ export const actions: Actions = {
     const lastName = formData.get("lastName") as string;
     const bio = formData.get("bio") as string;
     const location = formData.get("location") as string;
+    const isPrivate = !!formData.get("private");
 
     await prisma.user.update({
       where: {
@@ -42,6 +44,7 @@ export const actions: Actions = {
         displayLastName: lastName,
         bio: bio,
         location: location,
+        private: isPrivate,
       },
     });
 
