@@ -17,6 +17,7 @@ model User {
   email         String    @unique
   emailVerified DateTime?
   image         String?
+  private       Boolean   @default(false)
   accounts      Account[]
   sessions      Session[]
   createdAt     DateTime  @default(now())
