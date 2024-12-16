@@ -42,6 +42,7 @@
           location={park.states}
           isFree={!park.entranceFees.length}
           parkCode={park.parkCode}
+          posterImage={park.images[0].url}
         />
       {/each}
     </div>
