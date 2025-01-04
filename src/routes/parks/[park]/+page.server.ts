@@ -1,6 +1,6 @@
 import { PARKS_API_KEY, WEATHER_API_KEY } from "$env/static/private";
 import { error } from "@sveltejs/kit";
-import type { PageServerLoad } from "./$types";
+import type { PageServerLoad, Action } from "./$types";
 import { prisma } from "../../../prisma";
 
 interface TagItem {
@@ -67,6 +67,7 @@ export const load: PageServerLoad = async ({ params }) => {
     include: {
       Activity_ParksWithActivity: true,
       Topic_ParksWithTopic: true,
+      User_ParksVisited: true,
     },
   });
 
@@ -149,6 +150,7 @@ export const load: PageServerLoad = async ({ params }) => {
       include: {
         Topic_ParksWithTopic: true,
         Activity_ParksWithActivity: true,
+        User_ParksVisited: true,
       },
     });
   }
@@ -166,4 +168,49 @@ export const load: PageServerLoad = async ({ params }) => {
     images,
     weather: weather.current,
   };
+};
+
+export const actions: Action = {
+  updateVisitStatus: async (event) => {
+    const session = await event.locals.auth();
+
+    const parkVisitors = await prisma.park.findFirst({
+      where: {
+        npsId: event.params.park,
+      },
+      include: {
+        User_ParksVisited: true,
+      },
+    });
+
+    const parkVisited = parkVisitors?.User_ParksVisited.find(
+      (user) => user.id === session.user.id
+    );
+
+    if (parkVisited) {
+      await prisma.park.update({
+        where: {
+          id: parkVisitors?.id,
+        },
+        data: {
+          User_ParksVisited: {
+            disconnect: { id: session.user.id },
+          },
+        },
+      });
+    } else {
+      await prisma.park.update({
+        where: {
+          id: parkVisitors?.id,
+        },
+        data: {
+          User_ParksVisited: {
+            connect: {
+              id: session.user.id,
+            },
+          },
+        },
+      });
+    }
+  },
 };

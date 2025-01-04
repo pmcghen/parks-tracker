@@ -12,8 +12,7 @@
 
 <div>
   <form method="POST" action="?/updateVisitStatus" use:enhance>
-    <input type="hidden" value={user} />
-    <button onclick={toggleVisited} value={String(!isVisited)}>
+    <button onclick={toggleVisited}>
       {#if isVisited}
         I haven't visited this park
       {:else}
@@ -22,3 +21,10 @@
     </button>
   </form>
 </div>
+
+<style>
+  button {
+    padding: 0.5rem;
+    margin-block-end: 1rem;
+  }
+</style>

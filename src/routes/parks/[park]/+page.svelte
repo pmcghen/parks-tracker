@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { page } from "$app/stores";
   import Tag from "$lib/Tag.svelte";
+  import Actions from "./Actions.svelte";
 
   let { data } = $props();
 
@@ -14,6 +16,12 @@
       mainImage.alt = newImage.alt;
     }
   };
+
+  let isVisited = park.User_ParksVisited.find(
+    (user) => user.id === $page.data.session?.user?.id,
+  )
+    ? true
+    : false;
 </script>
 
 <svelte:head>
@@ -37,6 +45,10 @@
         </button>
       {/each}
     </div>
+  {/if}
+
+  {#if $page.data.session}
+    <Actions {isVisited} />
   {/if}
 
   <p>{park.description}</p>
