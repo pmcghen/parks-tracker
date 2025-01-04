@@ -4,7 +4,7 @@ import AxeBuilder from "@axe-core/playwright";
 // Reset storage state for this file to avoid being authenticated
 test.use({ storageState: { cookies: [], origins: [] } });
 
-test.describe("parks listing", () => {
+test.describe("park details", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/parks/adam");
   });
