@@ -35,7 +35,7 @@
 <div class="container">
   {#if parks.length}
     <h1>National Parks</h1>
-    <div class="grid">
+    <div class="grid img-grid">
       {#each parks as park}
         <Card
           name={park.fullName}
