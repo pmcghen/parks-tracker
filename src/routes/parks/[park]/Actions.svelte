@@ -1,9 +1,7 @@
 <script lang="ts">
-  import { page } from "$app/stores";
   import { enhance } from "$app/forms";
 
   export let isVisited: boolean;
-  const user = $page.data.session?.user?.id || "";
 
   async function toggleVisited() {
     isVisited = !isVisited;
