@@ -23,11 +23,12 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  displayFirstName  String?
-  displayLastName   String?
-  location          String?
-  bio               String?
-  Park_ParksVisited Park[]  @relation("ParksVisited")
+  displayFirstName     String?
+  displayLastName      String?
+  location             String?
+  bio                  String?
+  Park_ParksVisited    Park[]  @relation("ParksVisited")
+  Park_ParksOnWishlist Park[]  @relation("ParksOnWishlist")
 }
 
 model Account {
@@ -83,6 +84,7 @@ model Park {
   url                        String
   weatherInfo                String
   User_ParksVisited          User[]       @relation("ParksVisited")
+  User_ParksOnWishlist       User[]       @relation("ParksOnWishlist")
   Topic_ParksWithTopic       Topic[]      @relation("ParksWithTopic")
   Activity_ParksWithActivity Activity[]   @relation("ParksWithActivity")
   Contact                    Contact[]

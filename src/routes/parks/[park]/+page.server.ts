@@ -213,4 +213,46 @@ export const actions: Action = {
       });
     }
   },
+  updateWishlistStatus: async (event) => {
+    const session = await event.locals.auth();
+
+    const wishlisters = await prisma.park.findFirst({
+      where: {
+        npsId: event.params.park,
+      },
+      include: {
+        User_ParksOnWishlist: true,
+      },
+    });
+
+    const parkOnWishlist = wishlisters?.User_ParksOnWishlist.find(
+      (user) => user.id === session.user.id
+    );
+
+    if (parkOnWishlist) {
+      await prisma.park.update({
+        where: {
+          id: wishlisters?.id,
+        },
+        data: {
+          User_ParksOnWishlist: {
+            disconnect: { id: session.user.id },
+          },
+        },
+      });
+    } else {
+      await prisma.park.update({
+        where: {
+          id: wishlisters?.id,
+        },
+        data: {
+          User_ParksOnWishlist: {
+            connect: {
+              id: session.user.id,
+            },
+          },
+        },
+      });
+    }
+  },
 };

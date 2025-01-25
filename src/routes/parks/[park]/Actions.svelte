@@ -2,9 +2,14 @@
   import { enhance } from "$app/forms";
 
   export let isVisited: boolean;
+  export let isOnWishlist: boolean;
 
-  async function toggleVisited() {
+  function toggleVisited() {
     isVisited = !isVisited;
+  }
+
+  function toggleWishlist() {
+    isOnWishlist = !isOnWishlist;
   }
 </script>
 
@@ -15,6 +20,15 @@
         I haven't visited this park
       {:else}
         I've visited this park!
+      {/if}
+    </button>
+  </form>
+  <form method="POST" action="?/updateWishlistStatus" use:enhance>
+    <button onclick={toggleWishlist}>
+      {#if isOnWishlist}
+        Remove from wishlist
+      {:else}
+        Add to wishlist
       {/if}
     </button>
   </form>
